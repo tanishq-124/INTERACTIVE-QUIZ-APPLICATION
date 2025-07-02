@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz Application</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-900 to-purple-900 text-white min-h-screen">
+    <div class="container mx-auto px-4 py-8 flex flex-col items-center">
+        <!-- Quiz Selection Modal -->
+        <div id="quizSelectionModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+            <div class="bg-gray-800 rounded-2xl p-8 max-w-3xl w-full mx-4">
+                <h1 class="text-4xl font-bold text-center mb-4">Interactive Quiz</h1>
+                <p class="text-center mb-6">Select your quiz options below:</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Time Selection -->
+                    <div class="bg-gray-700 p-6 rounded-xl">
+                        <label class="block text-xl font-semibold mb-3">1. Time Limit</label>
+                        <select id="timeLimit" class="w-full bg-gray-800 text-white px-4 py-2 rounded-lg">
+                            <option value="1">1 minute</option>
+                            <option value="3" selected>3 minutes</option>
+                            <option value="5">5 minutes</option>
+                            <option value="10">10 minutes</option>
+                            <option value="0">Unlimited</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Question Count -->
+                    <div class="bg-gray-700 p-6 rounded-xl">
+                        <label class="block text-xl font-semibold mb-3">2. Number of Questions</label>
+                        <select id="questionCount" class="w-full bg-gray-800 text-white px-4 py-2 rounded-lg">
+                            <option value="5">5 questions</option>
+                            <option value="10" selected>10 questions</option>
+                            <option value="15">15 questions</option>
+                            <option value="20">20 questions</option>
+                            <option value="50">50 questions</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Difficulty Level -->
+                    <div class="bg-gray-700 p-6 rounded-xl">
+                        <label class="block text-xl font-semibold mb-3">3. Difficulty Level</label>
+                        <select id="difficultyLevel" class="w-full bg-gray-800 text-white px-4 py-2 rounded-lg">
+                            <option value="easy">Easy</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="hard">Hard</option>
+                            <option value="mixed">Mixed</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Category Selection -->
+                    <div class="bg-gray-700 p-6 rounded-xl">
+                        <label class="block text-xl font-semibold mb-3">4. Category</label>
+                        <select id="quizCategory" class="w-full bg-gray-800 text-white px-4 py-2 rounded-lg">
+                            <option value="mixed" selected>Mixed Categories</option>
+                            <option value="biology">Biology</option>
+                            <option value="physics">Physics</option>
+                            <option value="chemistry">Chemistry</option>
+                            <option value="mathematics">Mathematics</option>
+                            <option value="computer-science">Computer Science</option>
+                            <option value="history">History</option>
+                            <option value="literature">Literature</option>
+                            <option value="geography">Geography</option>
+                            <option value="economics">Economics</option>
+                            <option value="general-knowledge">General Knowledge</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="mt-8 flex justify-center">
+                    <button id="startQuizBtn" class="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-bold">
+                        Start Quiz
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Instructions Modal -->
+        <div id="instructionsModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+            <div class="bg-gray-800 rounded-2xl p-8 max-w-3xl w-full mx-4">
+                <h2 class="text-3xl font-bold text-center mb-6">Quiz Instructions</h2>
+                <p class="text-center mb-4">You will have to answer the questions based on the selected options. Good luck!</p>
+                <div class="flex justify-center">
+                    <button id="confirmStartQuizBtn" class="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg text-white font-semibold">
+                        Start Quiz Now
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quiz Interface -->
+        <div id="quizInterface" class="w-full max-w-4xl bg-gray-800 rounded-2xl p-6 shadow-xl hidden">
+            <div class="flex justify-between items-center mb-6">
+                <div class="flex items-center">
+                    <button id="quitQuizBtn" class="px-4 py-2 bg-gray-700 rounded-lg text-white font-semibold">
+                        Quit Quiz
+                    </button>
+                    <div id="quizCategoryBadge" class="px-3 py-1 bg-blue-600 rounded-full text-sm font-semibold">
+                        Mixed
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <div id="timer" class="px-3 py-1 bg-purple-600 rounded-full text-sm font-semibold">
+                        3:00
+                    </div>
+                    <div id="questionCounter" class="px-3 py-1 bg-green-600 rounded-full text-sm font-semibold">
+                        1/10
+                    </div>
+                </div>
+            </div>
+            
+            <div id="questionContainer" class="mb-8">
+                <h2 id="questionText" class="text-2xl font-semibold mb-6"></h2>
+                <div id="optionsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+            </div>
+            
+            <div id="feedbackContainer" class="hidden mb-6">
+                <div id="feedbackContent" class="p-4 rounded-lg"></div>
+                <button id="nextQuestionBtn" class="mt-4 px-6 py-2 bg-blue-600 rounded-lg text-white font-semibold">
+                    Next Question
+                </button>
+            </div>
+        </div>
+        
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="w-full max-w-4xl bg-gray-800 rounded-2xl p-8 shadow-xl hidden">
+            <h2 class="text-4xl font-bold text-center mb-2">Quiz Completed!</h2>
+            <p class="text-center mb-8">Here's how you performed:</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-gray-700 p-6 rounded-xl text-center">
+                    <div class="text-5xl font-bold mb-2" id="finalScore">0</div>
+                    <div>Total Score</div>
+                </div>
+                <div class="bg-gray-700 p-6 rounded-xl text-center">
+                    <div class="text-5xl font-bold mb-2" id="correctAnswers">0</div>
+                    <div>Correct Answers</div>
+                </div>
+                <div class="bg-gray-700 p-6 rounded-xl text-center">
+                    <div class="text-5xl font-bold mb-2" id="percentage">0%</div>
+                    <div>Accuracy</div>
+                </div>
+            </div>
+            <button id="tryAgainBtn" class="px-6 py-3 bg-gray-700 rounded-lg text-white font-semibold">
+                Try Another Quiz
+            </button>
+        </div>
+    </div>
+
+    <script src="quizData.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
