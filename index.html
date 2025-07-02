@@ -1,0 +1,204 @@
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Interactive Quiz Portal</title>
+       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+       <link rel="stylesheet" href="styles.css">
+       <script src="https://cdn.tailwindcss.com"></script>
+   </head>
+   <body class="font-poppins bg-gradient-to-b from-blue-50 to-white min-h-screen">
+       <div class="container mx-auto px-4 py-8 relative">
+           <div id="app" class="max-w-4xl mx-auto">
+               <!-- Header -->
+               <header class="text-center mb-10 animate-fadein">
+                   <div class="flex justify-center mb-4">
+                       <img src="images/logo.png" alt="QuizWiz Academy logo" class="h-20" />
+                   </div>
+                   <h1 class="text-4xl font-bold text-blue-900 mb-2">QuizWiz Academy</h1>
+                   <p class="text-xl text-blue-700">Test Your Knowledge Across Disciplines</p>
+               </header>
+               <!-- Configuration Screen -->
+               <div id="config-screen" class="bg-white rounded-xl shadow-lg p-8 animate-fadein">
+                   <h2 class="text-2xl font-semibold text-blue-900 mb-6 text-center">Quiz Configuration</h2>
+                   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                       <!-- Category Selection -->
+                       <div>
+                           <label class="block text-gray-700 font-medium mb-2" for="category">Subject Category</label>
+                           <select id="category" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                               <option value="all">All Subjects</option>
+                               <option value="mathematics">Mathematics</option>
+                               <option value="physics">Physics</option>
+                               <option value="chemistry">Chemistry</option>
+                               <option value="biology">Biology</option>
+                               <option value="computer-science">Computer Science</option>
+                               <option value="literature">Literature</option>
+                               <option value="history">History</option>
+                               <option value="economics">Economics</option>
+                               <option value="engineering">Engineering Principles</option>
+                           </select>
+                       </div>
+                       <!-- Difficulty Level -->
+                       <div>
+                           <label class="block text-gray-700 font-medium mb-2" for="difficulty">Difficulty Level</label>
+                           <select id="difficulty" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                               <option value="all">All Levels</option>
+                               <option value="easy">Easy</option>
+                               <option value="medium">Medium</option>
+                               <option value="hard">Hard</option>
+                           </select>
+                       </div>
+                       <!-- Number of Questions -->
+                       <div>
+                           <label class="block text-gray-700 font-medium mb-2" for="question-count">Number of Questions</label>
+                           <select id="question-count" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                               <option value="10">10 Questions</option>
+                               <option value="20">20 Questions</option>
+                               <option value="30">30 Questions</option>
+                               <option value="50">50 Questions</option>
+                           </select>
+                       </div>
+                       <!-- Time Limit -->
+                       <div>
+                           <label class="block text-gray-700 font-medium mb-2" for="time-limit">Time Limit (seconds per question)</label>
+                           <select id="time-limit" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                               <option value="0">No Time Limit</option>
+                               <option value="20">20 Seconds</option>
+                               <option value="30">30 Seconds</option>
+                               <option value="45">45 Seconds</option>
+                           </select>
+                       </div>
+                   </div>
+                   <div class="text-center">
+                       <button id="start-quiz" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 animate-pulse">
+                           Start Quiz
+                       </button>
+                   </div>
+                   <!-- Category Cards -->
+                   <div class="mt-12">
+                       <h3 class="text-xl font-semibold text-blue-900 mb-6 text-center">Explore Categories</h3>
+                       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                           <!-- Category Cards Here -->
+                       </div>
+                   </div>
+               </div>
+               <!-- Instructions Screen -->
+               <div id="instructions-screen" class="hidden bg-white rounded-xl shadow-lg p-8 animate-fadein">
+                   <div class="flex justify-between items-center mb-6">
+                       <h2 class="text-2xl font-semibold text-blue-900">Quiz Instructions</h2>
+                       <img src="images/instructions.png" alt="Quiz Instructions" class="h-16" />
+                   </div>
+                   <div class="space-y-4 mb-8">
+                       <!-- Instructions Here -->
+                   </div>
+                   <div class="flex justify-between items-center pt-4">
+                       <button id="back-to-config" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                           Back to Configuration
+                       </button>
+                       <button id="proceed-to-quiz" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                           Start Quiz Now
+                       </button>
+                   </div>
+               </div>
+               <!-- Quiz Screen -->
+               <div id="quiz-screen" class="hidden bg-white rounded-xl shadow-lg overflow-hidden relative">
+                   <!-- Quiz Header with Progress -->
+                   <div class="bg-blue-700 text-white px-6 py-4">
+                       <div class="flex justify-between items-center mb-2">
+                           <div>
+                               <h2 id="quiz-category" class="font-semibold text-lg"></h2>
+                               <p id="quiz-difficulty" class="text-blue-100 text-sm"></p>
+                           </div>
+                           <div class="flex items-center space-x-4">
+                               <div class="text-right">
+                                   <p class="text-blue-200 text-sm">Question</p>
+                                   <p id="question-counter" class="font-semibold"></p>
+                               </div>
+                               <div class="text-right">
+                                   <p class="text-blue-200 text-sm">Score</p>
+                                   <p id="quiz-score" class="font-semibold">0</p>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="w-full bg-blue-600 rounded-full h-2.5">
+                           <div id="quiz-progress" class="bg-white h-2.5 rounded-full" style="width: 0%"></div>
+                       </div>
+                   </div>
+                   <!-- Timer -->
+                   <div id="timer-container" class="px-6 mt-2 hidden">
+                       <div class="flex items-center">
+                           <div class="flex-1 bg-blue-50 rounded-full h-3 overflow-hidden">
+                               <div id="question-timer" class="bg-gradient-to-r from-blue-400 to-blue-600 h-full" style="width: 100%"></div>
+                           </div>
+                           <span id="time-left" class="ml-2 text-sm font-medium text-blue-700">0s</span>
+                       </div>
+                   </div>
+                   <!-- Question Content -->
+                   <div class="p-6">
+                       <div id="question-container" class="mb-8"></div>
+                       <div class="flex justify-between pt-4 border-t border-gray-100">
+                           <button id="prev-question" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                               Previous
+                           </button>
+                           <button id="next-question" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                               Next
+                           </button>
+                           <button id="submit-quiz" class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                               Submit Quiz
+                           </button>
+                       </div>
+                   </div>
+               </div>
+               <!-- Results Screen -->
+               <div id="results-screen" class="hidden bg-white rounded-xl shadow-lg overflow-hidden p-8 animate-fadein relative">
+                   <div class="text-center mb-8">
+                       <div class="flex justify-center mb-4">
+                           <img src="images/results.png" alt="Quiz Completion" class="h-32" />
+                       </div>
+                       <h2 class="text-3xl font-bold text-blue-900 mb-2">Quiz Results</h2>
+                       <p class="text-lg text-gray-600">Congratulations on completing the quiz!</p>
+                   </div>
+                   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                       <div class="bg-blue-50 rounded-xl p-6 text-center">
+                           <h3 class="text-gray-700 font-medium mb-2">Score</h3>
+                           <p id="final-score" class="text-3xl font-bold text-blue-700">0</p>
+                       </div>
+                       <div class="bg-green-50 rounded-xl p-6 text-center">
+                           <h3 class="text-gray-700 font-medium mb-2">Correct</h3>
+                           <p id="correct-answers" class="text-3xl font-bold text-green-700">0</p>
+                       </div>
+                       <div class="bg-red-50 rounded-xl p-6 text-center">
+                           <h3 class="text-gray-700 font-medium mb-2">Incorrect</h3>
+                           <p id="wrong-answers" class="text-3xl font-bold text-red-700">0</p>
+                       </div>
+                   </div>
+                   <div class="mt-8 text-center">
+                       <button id="restart-quiz" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 mr-4">
+                           Try Again
+                       </button>
+                       <button id="new-quiz" class="bg-white hover:bg-gray-100 text-blue-600 font-bold py-3 px-8 rounded-full text-lg border border-blue-600 transition-all duration-300 transform hover:scale-105">
+                           New Quiz
+                       </button>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <footer class="bg-white py-4 border-t border-gray-200">
+           <div class="container mx-auto px-4 text-center text-sm text-gray-500">
+               <p>Developed by Tanishq Agrawal • 
+                   <a href="https://www.linkedin.com/in/tanishq-agrawal-91a505335?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" 
+                      target="_blank" 
+                      class="text-blue-600 hover:underline">
+                       LinkedIn
+                   </a> • 
+                   <a href="mailto:tanishqagrawal1112@gmail.com" class="text-blue-600 hover:underline">
+                       Email
+                   </a>
+               </p>
+           </div>
+       </footer>
+       <script src="script.js"></script>
+   </body>
+   </html>
+   
