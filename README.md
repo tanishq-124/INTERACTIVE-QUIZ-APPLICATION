@@ -44,5 +44,5 @@ Overall, this Interactive Quiz Application is a simple but effective learning to
 This project is a solid example of what you can achieve using just HTML, CSS, and JavaScript. With a few more features and enhancements, it could easily grow into a more complete learning platform or a competitive quiz game.
 
 
-                                                            ![Image](https://github.com/user-attachments/assets/ba173b4a-dec8-4ee8-b641-3189ae5c456b)
+                               ![Image](https://github.com/user-attachments/assets/ba173b4a-dec8-4ee8-b641-3189ae5c456b)
 
