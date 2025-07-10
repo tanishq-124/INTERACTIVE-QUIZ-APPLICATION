@@ -42,3 +42,7 @@ It’s also a good demonstration project for your personal portfolio. If you are
 Overall, this Interactive Quiz Application is a simple but effective learning tool. It’s a great way to practice JavaScript skills, both for the developer who built it and the users who play the quiz. With a clean design, easy navigation, and instant feedback, it delivers a smooth and educational experience.
 
 This project is a solid example of what you can achieve using just HTML, CSS, and JavaScript. With a few more features and enhancements, it could easily grow into a more complete learning platform or a competitive quiz game.
+
+
+![Image](https://github.com/user-attachments/assets/ba173b4a-dec8-4ee8-b641-3189ae5c456b)
+
