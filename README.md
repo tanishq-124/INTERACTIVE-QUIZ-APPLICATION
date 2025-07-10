@@ -12,7 +12,7 @@
 
 *MENTOR*:  NEELA SANTOSH
 
-##📚 Interactive Quiz Application - Project Description
+📚 Interactive Quiz Application - Project Description
 The Interactive Quiz Application is a fun, simple, and user-friendly web project designed to help people test and improve their knowledge of JavaScript. It’s an online quiz where users can answer multiple-choice questions and get instant feedback on whether they got the answer right or wrong.
 
 This project was built using HTML, CSS, and JavaScript, making it completely frontend-based. It doesn’t use any complicated frameworks or libraries, which means it’s lightweight and easy to load. The goal was to create something educational yet entertaining, where users can challenge themselves in a fun and interactive way without needing to sign up or install anything.
