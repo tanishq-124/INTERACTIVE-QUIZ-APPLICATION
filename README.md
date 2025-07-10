@@ -13,47 +13,52 @@
 *MENTOR*:  NEELA SANTOSH
 
 🎮 Interactive Quiz Application
-Welcome to the Interactive Quiz Application – a fun and engaging way to test your JavaScript knowledge! This is a simple yet powerful web-based quiz platform built using HTML, CSS, and JavaScript. It’s designed to help learners and enthusiasts practice their skills and learn from instant feedback.
+Welcome to the Interactive Quiz Application – an engaging and beginner-friendly web-based quiz game designed to test your JavaScript knowledge in a fun way. This project is built entirely using HTML, CSS, and JavaScript, making it lightweight, easy to understand, and accessible to anyone learning web development.
 
-🚀 Live Demo
-👉 Check out the live project here
+👉 Live Website: https://tanishq-124.github.io/INTERACTIVE-QUIZ-APPLICATION/
 
 📚 About the Project
-This project is a basic interactive quiz where users can answer multiple-choice questions about JavaScript. The quiz is designed to give instant feedback, track scores, and provide an easy and enjoyable learning experience.
+The Interactive Quiz Application presents users with a series of multiple-choice questions related to JavaScript programming. The quiz helps users quickly assess their understanding of fundamental concepts by providing immediate feedback on each answer.
 
-The quiz questions are displayed one by one, and users can select their answer from four options. After submitting an answer, the application immediately tells whether the answer is correct or incorrect. Once all the questions are answered, the user gets a final score summary and the option to restart the quiz.
+Users simply start the quiz, answer the questions one by one, and at the end, see their total score. The simple design, easy navigation, and automatic score calculation make this quiz fun, educational, and effective.
+
+This project was created as a practice tool for beginner web developers and can also serve as a portfolio project demonstrating skills in DOM manipulation, event handling, and basic UI/UX design.
+
+👉 Try the Live Demo: https://tanishq-124.github.io/INTERACTIVE-QUIZ-APPLICATION/
 
 🔧 Built With
-HTML5 – for structuring the web pages.
+HTML5: for structuring the quiz interface and buttons.
 
-CSS3 – for styling and layout design.
+CSS3: for styling the layout, adding responsiveness, and improving the visual appeal.
 
-JavaScript – for adding interactivity, managing quiz logic, and keeping score.
+JavaScript: for implementing quiz logic, score calculation, question rendering, and event handling.
 
-✨ Features
-✅ Multiple-choice quiz questions
-✅ Real-time answer checking and scoring
-✅ Simple and clean UI
-✅ Beginner-friendly code structure
-✅ Fully responsive on desktop and mobile devices
-✅ Option to restart the quiz after finishing
+✨ Key Features
+✔️ Interactive multiple-choice quiz format
+✔️ Real-time answer checking with instant feedback
+✔️ Score tracking and display at the end of the quiz
+✔️ Minimal and clean user interface for distraction-free learning
+✔️ Fully responsive design (works on desktops and mobile devices)
+✔️ Option to restart the quiz and try again
 
-🎯 How to Use
-Open the live demo in your web browser.
+🚀 How to Use
+Visit the website: https://tanishq-124.github.io/INTERACTIVE-QUIZ-APPLICATION/
 
-Click on the Start Quiz button.
+Click "Start Quiz" to begin.
 
-Read the question and select the correct answer.
+Select your answer for each question.
 
-Submit your answer and see if you got it right.
+Get instant feedback and proceed to the next question.
 
-Continue through all the questions.
+After completing the quiz, view your final score.
 
-At the end, check your score and try again to improve!
+Click "Restart" to play again and improve your score.
 
 👨‍💻 Author
-Made with ❤️ by Tanishq Agrawal
+Made with 💻 and ❤️ by Tanishq Agrawal
 
+🔗 GitHub Profile: https://github.com/tanishq-124
+🔗 Live Project: https://tanishq-124.github.io/INTERACTIVE-QUIZ-APPLICATION/
 
 
 ![Image](https://github.com/user-attachments/assets/ba173b4a-dec8-4ee8-b641-3189ae5c456b)
